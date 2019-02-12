@@ -1,5 +1,3 @@
-#pragma once
-
 // ANSI color escape sequences (works on windows since 10 aniversary edition)
 class AnsiEscapeCodes {
 public:
