@@ -1,3 +1,5 @@
+#pragma once
+
 // ANSI color escape sequences (works on windows since 10 aniversary edition)
 class AnsiEscapeCodes {
 public:
@@ -8,43 +10,43 @@ public:
   static constexpr const char* Inverse = "[7m";
 
   // Foreground
-  static constexpr const char* FOREGROUNDCOLORBLACK = "[30m";
-  static constexpr const char* FOREGROUNDCOLORRED = "[31m";
-  static constexpr const char* FOREGROUNDCOLORGREEN = "[32m";
-  static constexpr const char* FOREGROUNDCOLORYELLOW = "[33m";
-  static constexpr const char* FOREGROUNDCOLORBLUE = "[34m";
-  static constexpr const char* FOREGROUNDCOLORMAGENTA = "[35m";
-  static constexpr const char* FOREGROUNDCOLORCYAN = "[36m";
-  static constexpr const char* FOREGROUNDCOLORWHITE = "[37m";
+  static constexpr const char* FOREGROUND_COLOR_BLACK = "[30m";
+  static constexpr const char* FOREGROUND_COLOR_RED = "[31m";
+  static constexpr const char* FOREGROUND_COLOR_GREEN = "[32m";
+  static constexpr const char* FOREGROUND_COLOR_YELLOW = "[33m";
+  static constexpr const char* FOREGROUND_COLOR_BLUE = "[34m";
+  static constexpr const char* FOREGROUND_COLOR_MAGENTA = "[35m";
+  static constexpr const char* FOREGROUND_COLOR_CYAN = "[36m";
+  static constexpr const char* FOREGROUND_COLOR_WHITE = "[37m";
 
   // Background
-  static constexpr const char* BACKGROUNDCOLORBLACK = "[40m";
-  static constexpr const char* BACKGROUNDCOLORRED = "[41m";
-  static constexpr const char* BACKGROUNDCOLORGREEN = "[42m";
-  static constexpr const char* BACKGROUNDCOLORYELLOW = "[43m";
-  static constexpr const char* BACKGROUNDCOLORBLUE = "[44m";
-  static constexpr const char* BACKGROUNDCOLORMAGENTA = "[45m";
-  static constexpr const char* BACKGROUNDCOLORCYAN = "[46m";
-  static constexpr const char* BACKGROUNDCOLORWHITE = "[47m";
+  static constexpr const char* BACKGROUND_COLOR_BLACK = "[40m";
+  static constexpr const char* BACKGROUND_COLOR_RED = "[41m";
+  static constexpr const char* BACKGROUND_COLOR_GREEN = "[42m";
+  static constexpr const char* BACKGROUND_COLOR_YELLOW = "[43m";
+  static constexpr const char* BACKGROUND_COLOR_BLUE = "[44m";
+  static constexpr const char* BACKGROUND_COLOR_MAGENTA = "[45m";
+  static constexpr const char* BACKGROUND_COLOR_CYAN = "[46m";
+  static constexpr const char* BACKGROUND_COLOR_WHITE = "[47m";
 
   // Strong foreground
-  static constexpr const char* FOREGROUNDCOLORSTRONGBLACK = "[90m";
-  static constexpr const char* FOREGROUNDCOLORSTRONGRED = "[91m";
-  static constexpr const char* FOREGROUNDCOLORSTRONGGREEN = "[92m";
-  static constexpr const char* FOREGROUNDCOLORSTRONGYELLOW = "[93m";
-  static constexpr const char* FOREGROUNDCOLORSTRONGBLUE = "[94m";
-  static constexpr const char* FOREGROUNDCOLORSTRONGMAGENTA = "[95m";
-  static constexpr const char* FOREGROUNDCOLORSTRONGCYAN = "[96m";
-  static constexpr const char* FOREGROUNDCOLORSTRONGWHITE = "[97m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_BLACK = "[90m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_RED = "[91m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_GREEN = "[92m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_YELLOW = "[93m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_BLUE = "[94m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_MAGENTA = "[95m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_CYAN = "[96m";
+  static constexpr const char* FOREGROUND_COLOR_STRONG_WHITE = "[97m";
 
   // Strong background
-  static constexpr const char* BACKGROUNDCOLORSTRONGBLACK = "[100m";
-  static constexpr const char* BACKGROUNDCOLORSTRONGRED = "[101m";
-  static constexpr const char* BACKGROUNDCOLORSTRONGGREEN = "[102m";
-  static constexpr const char* BACKGROUNDCOLORSTRONGYELLOW = "[103m";
-  static constexpr const char* BACKGROUNDCOLORSTRONGBLUE = "[104m";
-  static constexpr const char* BACKGROUNDCOLORSTRONGMAGENTA = "[105m";
-  static constexpr const char* BACKGROUNDCOLORSTRONGCYAN = "[106m";
-  static constexpr const char* BACKGROUNDCOLORSTRONGWHITE = "[107m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_BLACK = "[100m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_RED = "[101m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_GREEN = "[102m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_YELLOW = "[103m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_BLUE = "[104m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_MAGENTA = "[105m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_CYAN = "[106m";
+  static constexpr const char* BACKGROUND_COLOR_STRONG_WHITE = "[107m";
 
 };

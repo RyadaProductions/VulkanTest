@@ -160,6 +160,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnsiEscapeCodes.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="HelloTriangleApplication.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
