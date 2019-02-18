@@ -1,7 +1,7 @@
-#include "HelloTriangleApplication.h"
+#include "Engine.h"
 
 // public
-void HelloTriangleApplication::run() {
+void Engine::run() {
   initWindow();
   initVulkan();
   mainLoop();
@@ -9,33 +9,33 @@ void HelloTriangleApplication::run() {
 }
 
 // private
-void HelloTriangleApplication::initWindow() {
+void Engine::initWindow() {
   glfwInit();
 
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
   glfwWindowHint(GLFW_RESIZABLE, GLFW_NO_API);
 
-  window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+  window = glfwCreateWindow(settings.WIDTH, settings.HEIGHT, "Vulkan", nullptr, nullptr);
 }
 
-void HelloTriangleApplication::initVulkan() {
+void Engine::initVulkan() {
   createInstance();
-  setupDebugMessenger();
+  setupDebugManager();
   pickPhysicalDevice();
   createLogicalDevice();
 }
 
-void HelloTriangleApplication::mainLoop() {
+void Engine::mainLoop() {
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
   }
 }
 
-void HelloTriangleApplication::cleanup() {
+void Engine::cleanup() {
   vkDestroyDevice(device, nullptr);
 
-  if (enableValidationLayers) {
-    DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
+  if (settings.enableValidationLayers) {
+    debugManager.destroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
   }
 
   vkDestroyInstance(instance, nullptr);
@@ -45,8 +45,8 @@ void HelloTriangleApplication::cleanup() {
   glfwTerminate();
 }
 
-void HelloTriangleApplication::createInstance() {
-  if (enableValidationLayers && !checkValidationLayerSupport())
+void Engine::createInstance() {
+  if (settings.enableValidationLayers && !checkValidationLayerSupport())
     throw std::runtime_error("Validation layers requested, but not available!");
 
   VkApplicationInfo appInfo = {};
@@ -65,9 +65,9 @@ void HelloTriangleApplication::createInstance() {
   createInfo.enabledExtensionCount = static_cast<uint32_t>(requiredExtensions.size());
   createInfo.ppEnabledExtensionNames = requiredExtensions.data();
 
-  if (enableValidationLayers) {
-    createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
-    createInfo.ppEnabledLayerNames = validationLayers.data();
+  if (settings.enableValidationLayers) {
+    createInfo.enabledLayerCount = static_cast<uint32_t>(settings.validationLayers.size());
+    createInfo.ppEnabledLayerNames = settings.validationLayers.data();
   }
   else
     createInfo.enabledLayerCount = 0;
@@ -78,7 +78,7 @@ void HelloTriangleApplication::createInstance() {
     throw std::runtime_error("Failed to create a Vulkan instance!");
 }
 
-void HelloTriangleApplication::outputAvailableExtensions(std::vector<const char*> * pRequiredExtensions) {
+void Engine::outputAvailableExtensions(std::vector<const char*> * pRequiredExtensions) {
   uint32_t availableExtensionCount = 0;
   vkEnumerateInstanceExtensionProperties(nullptr, &availableExtensionCount, nullptr);
   std::vector<VkExtensionProperties> availableExtensions(availableExtensionCount);
@@ -97,34 +97,20 @@ void HelloTriangleApplication::outputAvailableExtensions(std::vector<const char*
   }
 }
 
-void HelloTriangleApplication::setupDebugMessenger() {
-  if (!enableValidationLayers) return;
-
-  VkDebugUtilsMessengerCreateInfoEXT createInfo = {};
-  createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-  createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
-  createInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
-  createInfo.pfnUserCallback = debugCallback;
-  //createInfo.pUserData = nullptr;
-
-  if (CreateDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS)
-    throw std::runtime_error("Failed to setup debug messenger!");
-}
-
-std::vector<const char*> HelloTriangleApplication::getRequiredExtensions() {
+std::vector<const char*> Engine::getRequiredExtensions() {
   uint32_t glfwExtensionCount = 0;
   const char** glfwExtensions;
   glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
   std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
 
-  if (enableValidationLayers)
+  if (settings.enableValidationLayers)
     extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
   return extensions;
 }
 
-bool HelloTriangleApplication::checkValidationLayerSupport() {
+bool Engine::checkValidationLayerSupport() {
   uint32_t layerCount;
   vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
@@ -133,7 +119,7 @@ bool HelloTriangleApplication::checkValidationLayerSupport() {
   if (layerCount > 0)
     std::cout << "Looking for instance layers: " << std::endl;
 
-  for (const char* layerName : validationLayers) {
+  for (const char* layerName : settings.validationLayers) {
     bool layerFound = false;
     std::cout << "\t" << layerName;
 
@@ -152,7 +138,7 @@ bool HelloTriangleApplication::checkValidationLayerSupport() {
   return true;
 }
 
-void HelloTriangleApplication::pickPhysicalDevice() {
+void Engine::pickPhysicalDevice() {
   uint32_t deviceCount = 0;
   vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
 
@@ -172,13 +158,13 @@ void HelloTriangleApplication::pickPhysicalDevice() {
     throw std::runtime_error("Failed to find a suitable GPU");
 }
 
-bool HelloTriangleApplication::isDeviceSuitable(VkPhysicalDevice device) {
+bool Engine::isDeviceSuitable(VkPhysicalDevice device) {
   QueueFamilyIndices indices = findQueueFamilies(device);
 
   return indices.isComplete();
 }
 
-QueueFamilyIndices HelloTriangleApplication::findQueueFamilies(VkPhysicalDevice device) {
+QueueFamilyIndices Engine::findQueueFamilies(VkPhysicalDevice device) {
   QueueFamilyIndices indices;
 
   uint32_t indicesCount = 0;
@@ -202,7 +188,11 @@ QueueFamilyIndices HelloTriangleApplication::findQueueFamilies(VkPhysicalDevice 
   return indices;
 }
 
-void HelloTriangleApplication::createLogicalDevice() {
+void Engine::setupDebugManager() {
+  debugManager.setupDebugMessenger(&settings, instance, &debugMessenger);
+}
+
+void Engine::createLogicalDevice() {
   QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 
   VkDeviceQueueCreateInfo queueCreateInfo = {};
@@ -223,9 +213,9 @@ void HelloTriangleApplication::createLogicalDevice() {
 
   createInfo.enabledExtensionCount = 0;
 
-  if (enableValidationLayers) {
-    createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
-    createInfo.ppEnabledLayerNames = validationLayers.data();
+  if (settings.enableValidationLayers) {
+    createInfo.enabledLayerCount = static_cast<uint32_t>(settings.validationLayers.size());
+    createInfo.ppEnabledLayerNames = settings.validationLayers.data();
   }
   else
     createInfo.enabledLayerCount = 0;
@@ -234,30 +224,4 @@ void HelloTriangleApplication::createLogicalDevice() {
     throw std::runtime_error("Failed to create logical device");
 
   vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
-}
-
-
-VKAPI_ATTR VkBool32 VKAPI_CALL HelloTriangleApplication::debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT * pCallbackData,
-  void* pUserData) {
-  const char* outputColor;
-
-  switch (messageSeverity) {
-  case VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT:
-    outputColor = AnsiEscapeCodes::FOREGROUND_COLOR_STRONG_RED;
-    break;
-  case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
-    outputColor = AnsiEscapeCodes::FOREGROUND_COLOR_STRONG_BLACK;
-    break;
-  case VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT:
-    outputColor = AnsiEscapeCodes::FOREGROUND_COLOR_RED;
-    break;
-  case VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT:
-  default:
-    outputColor = "";
-    break;
-  }
-
-  std::cerr << outputColor << "Validation layer: " << pCallbackData->pMessage << AnsiEscapeCodes::RESET << std::endl;
-
-  return VK_FALSE;
 }
