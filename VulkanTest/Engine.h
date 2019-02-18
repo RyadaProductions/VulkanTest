@@ -7,6 +7,7 @@
 #include <vector>
 
 // h files
+#include "VulkanInstance.h"
 #include "QueueFamilyIndices.h"
 #include "Settings.h"
 #include "DebugManager.h"
@@ -18,7 +19,7 @@ public:
 private:
 	GLFWwindow* window;
 
-	VkInstance instance;
+	VulkanInstance vulkanInstance;
 	VkDebugUtilsMessengerEXT debugMessenger;
 
 	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
@@ -39,9 +40,6 @@ private:
 
 	void createLogicalDevice();
 
-	bool checkValidationLayerSupport();
-	void outputAvailableExtensions(std::vector<const char*>* pRequiredExtensions);
-	std::vector<const char*> getRequiredExtensions();
 	bool isDeviceSuitable(VkPhysicalDevice device);
 
 	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);

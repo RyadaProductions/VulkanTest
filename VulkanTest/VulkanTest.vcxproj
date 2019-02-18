@@ -163,6 +163,7 @@
     <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="VulkanInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnsiEscapeCodes.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="QueueFamilyIndices.h" />
+    <ClInclude Include="VulkanInstance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
