@@ -4,10 +4,9 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-#include <iostream>
+#include <vector>
 #include <stdexcept>
-#include <functional>
-#include <cstdlib>
+#include <iostream>
 
 #include "AnsiEscapeCodes.h"
 #include "Settings.h"
