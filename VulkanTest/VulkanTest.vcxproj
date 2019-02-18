@@ -106,14 +106,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Roderick\Documents\Libraries\glfw-3.2.1.bin.WIN64\include;C:\Users\Roderick\Documents\Libraries\glm;C:\VulkanSDK\1.1.97.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%userprofile%\documents\Libraries\glfw-3.2.1.bin.WIN64\include;%userprofile%\documents\Libraries\glm;C:\VulkanSDK\1.1.97.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Roderick\Documents\Libraries\glfw-3.2.1.bin.WIN64\lib-vc2015;C:\VulkanSDK\1.1.97.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%userprofile%\documents\Libraries\glfw-3.2.1.bin.WIN64\lib-vc2015;C:\VulkanSDK\1.1.97.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:MSVCRT.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -89,7 +89,7 @@ void Engine::outputAvailableExtensions(std::vector<const char*> * pRequiredExten
     std::cout << "\t" << availableExtension.extensionName;
 
     bool isAvailable = false;
-    for (int i = 0; i < static_cast<uint32_t>(pRequiredExtensions->size()); i++) {
+    for (uint32_t i = 0; i < static_cast<uint32_t>(pRequiredExtensions->size()); i++) {
       if (strcmp(pRequiredExtensions->at(i), availableExtension.extensionName) != 0) continue;
       isAvailable = true;
     }
