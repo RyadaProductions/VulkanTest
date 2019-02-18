@@ -19,10 +19,10 @@ void Engine::initWindow() {
 }
 
 void Engine::initVulkan() {
-	createInstance();
-	setupDebugManager();
-	pickPhysicalDevice();
-	createLogicalDevice();
+	vulkanInstance.initInstance(&settings);
+	debugManager.setupDebugMessenger(&settings, vulkanInstance.instance);
+	physicalDevice.pickPhysicalDevice(vulkanInstance.instance);
+	logicalDevice.createLogicalDevice(physicalDevice.physicalDevice, &settings);
 }
 
 void Engine::mainLoop() {
@@ -35,7 +35,7 @@ void Engine::cleanup() {
 	vkDestroyDevice(logicalDevice.device, nullptr);
 
 	if (settings.enableValidationLayers) {
-		debugManager.destroyDebugUtilsMessengerEXT(vulkanInstance.instance, debugMessenger, nullptr);
+		debugManager.destroyDebugUtilsMessengerEXT(vulkanInstance.instance, debugManager.debugMessenger, nullptr);
 	}
 
 	vkDestroyInstance(vulkanInstance.instance, nullptr);
@@ -43,20 +43,4 @@ void Engine::cleanup() {
 	glfwDestroyWindow(window);
 
 	glfwTerminate();
-}
-
-void Engine::createInstance() {
-	vulkanInstance.initInstance(&settings);
-}
-
-void Engine::pickPhysicalDevice() {
-	physicalDevice.pickPhysicalDevice(vulkanInstance.instance);
-}
-
-void Engine::setupDebugManager() {
-	debugManager.setupDebugMessenger(&settings, vulkanInstance.instance, &debugMessenger);
-}
-
-void Engine::createLogicalDevice() {
-	logicalDevice.createLogicalDevice(physicalDevice.physicalDevice, &settings);
 }

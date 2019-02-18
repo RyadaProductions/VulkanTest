@@ -31,10 +31,5 @@ private:
 	void initVulkan();
 	void mainLoop();
 	void cleanup();
-
-	void createInstance();
-	void setupDebugManager();
-	void pickPhysicalDevice();
-	void createLogicalDevice();
 };
 #endif // !HelloTriangleApplication_H

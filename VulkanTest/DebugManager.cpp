@@ -1,6 +1,8 @@
 #include "DebugManager.h"
 
-void DebugManager::setupDebugMessenger(Settings* pSettings, VkInstance instance, VkDebugUtilsMessengerEXT* pDebugMessenger) {
+void DebugManager::setupDebugMessenger(Settings* pSettings, VkInstance instance) {
+	if (isInitialized)
+		throw std::runtime_error("DebugManager has already been initialized.");
 	if (!pSettings->enableValidationLayers) return;
 
 	VkDebugUtilsMessengerCreateInfoEXT createInfo = {};
@@ -10,8 +12,10 @@ void DebugManager::setupDebugMessenger(Settings* pSettings, VkInstance instance,
 	createInfo.pfnUserCallback = debugCallback;
 	//createInfo.pUserData = nullptr;
 
-	if (createDebugUtilsMessengerEXT(instance, &createInfo, nullptr, pDebugMessenger) != VK_SUCCESS)
+	if (createDebugUtilsMessengerEXT(instance, &createInfo, nullptr) != VK_SUCCESS)
 		throw std::runtime_error("Failed to setup debug messenger!");
+
+	isInitialized = true;
 }
 
 
@@ -22,11 +26,11 @@ void DebugManager::destroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUti
 	func(instance, debugMessenger, pAllocator);
 }
 
-VkResult DebugManager::createDebugUtilsMessengerEXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT * pCreateInfo, const VkAllocationCallbacks * pAllocator, VkDebugUtilsMessengerEXT * pDebugMessenger) {
+VkResult DebugManager::createDebugUtilsMessengerEXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT * pCreateInfo, const VkAllocationCallbacks * pAllocator) {
 	auto func = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
 	if (func == nullptr) return VK_ERROR_EXTENSION_NOT_PRESENT;
 
-	return func(instance, pCreateInfo, pAllocator, pDebugMessenger);
+	return func(instance, pCreateInfo, pAllocator, &debugMessenger);
 
 	return VK_ERROR_EXTENSION_NOT_PRESENT;
 }
