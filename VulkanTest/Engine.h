@@ -13,37 +13,37 @@
 
 class Engine {
 public:
-  void run();
+	void run();
 
 private:
-  GLFWwindow* window;
+	GLFWwindow* window;
 
-  VkInstance instance;
-  VkDebugUtilsMessengerEXT debugMessenger;
+	VkInstance instance;
+	VkDebugUtilsMessengerEXT debugMessenger;
 
-  VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-  VkDevice device;
-  VkQueue graphicsQueue;
+	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+	VkDevice device;
+	VkQueue graphicsQueue;
 
-  Settings settings;
-  DebugManager debugManager;
+	Settings settings;
+	DebugManager debugManager;
 
-  void initWindow();
-  void initVulkan();
-  void mainLoop();
-  void cleanup();
+	void initWindow();
+	void initVulkan();
+	void mainLoop();
+	void cleanup();
 
-  void createInstance();
-  void setupDebugManager();
-  void pickPhysicalDevice();
+	void createInstance();
+	void setupDebugManager();
+	void pickPhysicalDevice();
 
-  void createLogicalDevice();
+	void createLogicalDevice();
 
-  bool checkValidationLayerSupport();
-  void outputAvailableExtensions(std::vector<const char*>* pRequiredExtensions);
-  std::vector<const char*> getRequiredExtensions();
-  bool isDeviceSuitable(VkPhysicalDevice device);
+	bool checkValidationLayerSupport();
+	void outputAvailableExtensions(std::vector<const char*>* pRequiredExtensions);
+	std::vector<const char*> getRequiredExtensions();
+	bool isDeviceSuitable(VkPhysicalDevice device);
 
-  QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 };
 #endif // !HelloTriangleApplication_H

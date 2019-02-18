@@ -4,10 +4,10 @@
 #include <optional>
 
 struct QueueFamilyIndices {
-  std::optional<uint32_t> graphicsFamily;
+	std::optional<uint32_t> graphicsFamily;
 
-  bool isComplete() {
-    return graphicsFamily.has_value();
-  }
+	bool isComplete() {
+		return graphicsFamily.has_value();
+	}
 };
 #endif // !QueueFamilyIndices_H
