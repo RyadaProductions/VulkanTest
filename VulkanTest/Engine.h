@@ -4,11 +4,10 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-#include <vector>
-
 // h files
 #include "VulkanInstance.h"
-#include "QueueFamilyIndices.h"
+#include "VulkanPhysicalDevice.h"
+#include "VulkanLogicalDevice.h"
 #include "Settings.h"
 #include "DebugManager.h"
 
@@ -22,9 +21,8 @@ private:
 	VulkanInstance vulkanInstance;
 	VkDebugUtilsMessengerEXT debugMessenger;
 
-	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-	VkDevice device;
-	VkQueue graphicsQueue;
+	VulkanPhysicalDevice physicalDevice;
+	VulkanLogicalDevice logicalDevice;
 
 	Settings settings;
 	DebugManager debugManager;
@@ -37,11 +35,6 @@ private:
 	void createInstance();
 	void setupDebugManager();
 	void pickPhysicalDevice();
-
 	void createLogicalDevice();
-
-	bool isDeviceSuitable(VkPhysicalDevice device);
-
-	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 };
 #endif // !HelloTriangleApplication_H
