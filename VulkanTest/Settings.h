@@ -1,6 +1,8 @@
 #ifndef Settings_H
 #define Settings_H
 
+#include <vector>
+
 class Settings {
 public:
   const int WIDTH = 800;
