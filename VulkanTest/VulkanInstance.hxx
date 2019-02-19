@@ -20,8 +20,8 @@ private:
 
 	void outputAvailableExtensions(std::vector<const char*>* pRequiredExtensions);
 
-	bool checkValidationLayerSupport(Settings* settings);
+	bool checkValidationLayerSupport(Settings* pSettings);
 
-	std::vector<const char*> getRequiredExtensions(Settings* settings);
+	std::vector<const char*> getRequiredExtensions(Settings* pSettings);
 };
 #endif // !VulkanInstance_H

@@ -26,7 +26,7 @@ void Engine::initVulkan() {
   // Create vulkan surface
   createSurface();
   // Pick physical device
-	physicalDevice.pickPhysicalDevice(vulkanInstance.instance, surface);
+	physicalDevice.pickPhysicalDevice(vulkanInstance.instance, surface, &settings);
   // Create logical device
 	logicalDevice.createLogicalDevice(physicalDevice.physicalDevice, surface, &settings);
 }

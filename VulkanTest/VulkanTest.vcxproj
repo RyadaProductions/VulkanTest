@@ -173,6 +173,7 @@
     <ClInclude Include="Settings.hxx" />
     <ClInclude Include="Engine.hxx" />
     <ClInclude Include="QueueFamilyIndices.hxx" />
+    <ClInclude Include="SwapChainSupportDetails.hxx" />
     <ClInclude Include="VulkanInstance.hxx" />
     <ClInclude Include="VulkanLogicalDevice.hxx" />
     <ClInclude Include="VulkanPhysicalDevice.hxx" />

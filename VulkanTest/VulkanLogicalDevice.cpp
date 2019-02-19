@@ -1,6 +1,6 @@
 #include "VulkanLogicalDevice.hxx"
 
-void VulkanLogicalDevice::createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* settings) {
+void VulkanLogicalDevice::createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* pSettings) {
   QueueFamilyIndices indices = findQueueFamilies(physicalDevice, surface);
 
   std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
@@ -25,11 +25,12 @@ void VulkanLogicalDevice::createLogicalDevice(VkPhysicalDevice physicalDevice, V
   createInfo.pQueueCreateInfos = queueCreateInfos.data();
   createInfo.pEnabledFeatures = &deviceFeatures;
 
-  createInfo.enabledExtensionCount = 0;
+  createInfo.enabledExtensionCount = static_cast<uint32_t>(pSettings->deviceExtensions.size());
+  createInfo.ppEnabledExtensionNames = pSettings->deviceExtensions.data();
 
-  if (settings->enableValidationLayers) {
-    createInfo.enabledLayerCount = static_cast<uint32_t>(settings->validationLayers.size());
-    createInfo.ppEnabledLayerNames = settings->validationLayers.data();
+  if (pSettings->enableValidationLayers) {
+    createInfo.enabledLayerCount = static_cast<uint32_t>(pSettings->validationLayers.size());
+    createInfo.ppEnabledLayerNames = pSettings->validationLayers.data();
   }
   else
     createInfo.enabledLayerCount = 0;

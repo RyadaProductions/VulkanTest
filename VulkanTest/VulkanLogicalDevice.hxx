@@ -14,9 +14,10 @@
 class VulkanLogicalDevice {
 public:
 	VkDevice device;
+
 	VkQueue graphicsQueue;
   VkQueue presentQueue;
 
-	void createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* settings);
+	void createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* pSettings);
 };
 #endif // !VulkanLogicalDevice_H

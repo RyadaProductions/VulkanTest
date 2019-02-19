@@ -6,16 +6,21 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 
 #include "QueueFamilyIndices.hxx"
+#include "SwapChainSupportDetails.hxx"
+#include "Settings.hxx"
 
 class VulkanPhysicalDevice {
 public:
 	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 
-	void pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface);
+	void pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface, Settings* pSettings);
 
 private:
-	bool isDeviceSuitable(VkPhysicalDevice device, VkSurfaceKHR surface);
+	bool isDeviceSuitable(VkPhysicalDevice device, VkSurfaceKHR surface, Settings* pSettings);
+
+  bool checkDeviceExtensionSupport(VkPhysicalDevice device, Settings* pSettings);
 };
 #endif // !VulkanPhysicalDevice_H

@@ -1,10 +1,10 @@
 #include "VulkanInstance.hxx"
 
-void VulkanInstance::initInstance(Settings* settings) {
+void VulkanInstance::initInstance(Settings* pSettings) {
 	if (isInitialized)
 		throw std::runtime_error("Vulkan instance was already initialized");
 
-	if (settings->enableValidationLayers && !checkValidationLayerSupport(settings))
+	if (pSettings->enableValidationLayers && !checkValidationLayerSupport(pSettings))
 		throw std::runtime_error("Validation layers requested, but not available!");
 
 	VkApplicationInfo appInfo = {};
@@ -19,13 +19,13 @@ void VulkanInstance::initInstance(Settings* settings) {
 	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pApplicationInfo = &appInfo;
 
-	std::vector<const char*> requiredExtensions = getRequiredExtensions(settings);
+	std::vector<const char*> requiredExtensions = getRequiredExtensions(pSettings);
 	createInfo.enabledExtensionCount = static_cast<uint32_t>(requiredExtensions.size());
 	createInfo.ppEnabledExtensionNames = requiredExtensions.data();
 
-	if (settings->enableValidationLayers) {
-		createInfo.enabledLayerCount = static_cast<uint32_t>(settings->validationLayers.size());
-		createInfo.ppEnabledLayerNames = settings->validationLayers.data();
+	if (pSettings->enableValidationLayers) {
+		createInfo.enabledLayerCount = static_cast<uint32_t>(pSettings->validationLayers.size());
+		createInfo.ppEnabledLayerNames = pSettings->validationLayers.data();
 	}
 	else
 		createInfo.enabledLayerCount = 0;
@@ -57,7 +57,7 @@ void VulkanInstance::outputAvailableExtensions(std::vector<const char*>* pRequir
 	}
 }
 
-bool VulkanInstance::checkValidationLayerSupport(Settings * settings) {
+bool VulkanInstance::checkValidationLayerSupport(Settings* pSettings) {
 	uint32_t layerCount;
 	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
@@ -66,7 +66,7 @@ bool VulkanInstance::checkValidationLayerSupport(Settings * settings) {
 	if (layerCount > 0)
 		std::cout << "Looking for instance layers: " << std::endl;
 
-	for (const char* layerName : settings->validationLayers) {
+	for (const char* layerName : pSettings->validationLayers) {
 		bool layerFound = false;
 		std::cout << "\t" << layerName;
 
@@ -85,14 +85,14 @@ bool VulkanInstance::checkValidationLayerSupport(Settings * settings) {
 	return true;
 }
 
-std::vector<const char*> VulkanInstance::getRequiredExtensions(Settings * settings) {
+std::vector<const char*> VulkanInstance::getRequiredExtensions(Settings* pSettings) {
 	uint32_t glfwExtensionCount = 0;
 	const char** glfwExtensions;
 	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
 	std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
 
-	if (settings->enableValidationLayers)
+	if (pSettings->enableValidationLayers)
 		extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
 	return extensions;
