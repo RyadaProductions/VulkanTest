@@ -19,10 +19,16 @@ void Engine::initWindow() {
 }
 
 void Engine::initVulkan() {
+  // Create vulkan instance
 	vulkanInstance.initInstance(&settings);
+  // Setup the debug messenger
 	debugManager.setupDebugMessenger(&settings, vulkanInstance.instance);
-	physicalDevice.pickPhysicalDevice(vulkanInstance.instance);
-	logicalDevice.createLogicalDevice(physicalDevice.physicalDevice, &settings);
+  // Create vulkan surface
+  createSurface();
+  // Pick physical device
+	physicalDevice.pickPhysicalDevice(vulkanInstance.instance, surface);
+  // Create logical device
+	logicalDevice.createLogicalDevice(physicalDevice.physicalDevice, surface, &settings);
 }
 
 void Engine::mainLoop() {
@@ -38,9 +44,15 @@ void Engine::cleanup() {
 		debugManager.destroyDebugUtilsMessengerEXT(vulkanInstance.instance, debugManager.debugMessenger, nullptr);
 	}
 
+  vkDestroySurfaceKHR(vulkanInstance.instance, surface, nullptr);
 	vkDestroyInstance(vulkanInstance.instance, nullptr);
 
 	glfwDestroyWindow(window);
 
 	glfwTerminate();
+}
+
+void Engine::createSurface() {
+  if (glfwCreateWindowSurface(vulkanInstance.instance, window, nullptr, &surface) != VK_SUCCESS)
+    throw std::runtime_error("Failed to create window surface!");
 }

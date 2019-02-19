@@ -1,6 +1,6 @@
 #include "VulkanPhysicalDevice.hxx"
 
-void VulkanPhysicalDevice::pickPhysicalDevice(VkInstance instance) {
+void VulkanPhysicalDevice::pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface) {
 	uint32_t deviceCount = 0;
 	vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
 
@@ -11,7 +11,7 @@ void VulkanPhysicalDevice::pickPhysicalDevice(VkInstance instance) {
 	vkEnumeratePhysicalDevices(instance, &deviceCount, physicalDevices.data());
 
 	for (const auto& device : physicalDevices) {
-		if (!isDeviceSuitable(device)) continue;
+		if (!isDeviceSuitable(device, surface)) continue;
 
 		physicalDevice = device;
 	}
@@ -20,8 +20,8 @@ void VulkanPhysicalDevice::pickPhysicalDevice(VkInstance instance) {
 		throw std::runtime_error("Failed to find a suitable GPU");
 }
 
-bool VulkanPhysicalDevice::isDeviceSuitable(VkPhysicalDevice device) {
-	QueueFamilyIndices indices = findQueueFamilies(device);
+bool VulkanPhysicalDevice::isDeviceSuitable(VkPhysicalDevice device, VkSurfaceKHR surface) {
+	QueueFamilyIndices indices = findQueueFamilies(device, surface);
 
 	return indices.isComplete();
 }

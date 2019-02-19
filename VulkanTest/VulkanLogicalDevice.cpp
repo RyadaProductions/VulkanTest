@@ -1,7 +1,7 @@
 #include "VulkanLogicalDevice.hxx"
 
-void VulkanLogicalDevice::createLogicalDevice(VkPhysicalDevice physicalDevice, Settings* settings) {
-	QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
+void VulkanLogicalDevice::createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* settings) {
+	QueueFamilyIndices indices = findQueueFamilies(physicalDevice, surface);
 
 	VkDeviceQueueCreateInfo queueCreateInfo = {};
 	queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;

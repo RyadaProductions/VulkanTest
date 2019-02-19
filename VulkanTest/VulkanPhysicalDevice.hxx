@@ -13,9 +13,9 @@ class VulkanPhysicalDevice {
 public:
 	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 
-	void pickPhysicalDevice(VkInstance instance);
+	void pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface);
 
 private:
-	bool isDeviceSuitable(VkPhysicalDevice device);
+	bool isDeviceSuitable(VkPhysicalDevice device, VkSurfaceKHR surface);
 };
 #endif // !VulkanPhysicalDevice_H

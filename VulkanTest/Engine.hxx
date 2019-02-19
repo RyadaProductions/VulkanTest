@@ -27,9 +27,13 @@ private:
 	Settings settings;
 	DebugManager debugManager;
 
+  VkSurfaceKHR surface;
+
 	void initWindow();
 	void initVulkan();
 	void mainLoop();
 	void cleanup();
+
+  void createSurface();
 };
 #endif // !HelloTriangleApplication_H

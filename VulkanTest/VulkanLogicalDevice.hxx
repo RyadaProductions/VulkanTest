@@ -15,6 +15,6 @@ public:
 	VkDevice device;
 	VkQueue graphicsQueue;
 
-	void createLogicalDevice(VkPhysicalDevice physicalDevice, Settings* settings);
+	void createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* settings);
 };
 #endif // !VulkanLogicalDevice_H
