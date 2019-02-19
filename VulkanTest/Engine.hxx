@@ -8,6 +8,7 @@
 #include "VulkanInstance.hxx"
 #include "VulkanPhysicalDevice.hxx"
 #include "VulkanLogicalDevice.hxx"
+#include "VulkanSwapChain.hxx"
 #include "Settings.hxx"
 #include "DebugManager.hxx"
 
@@ -23,6 +24,7 @@ private:
 
 	VulkanPhysicalDevice physicalDevice;
 	VulkanLogicalDevice logicalDevice;
+  VulkanSwapChain swapChain;
 
 	Settings settings;
 	DebugManager debugManager;

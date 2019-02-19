@@ -19,16 +19,18 @@ void Engine::initWindow() {
 }
 
 void Engine::initVulkan() {
-  // Create vulkan instance
+	// Create vulkan instance
 	vulkanInstance.initInstance(&settings);
-  // Setup the debug messenger
+	// Setup the debug messenger
 	debugManager.setupDebugMessenger(&settings, vulkanInstance.instance);
-  // Create vulkan surface
-  createSurface();
-  // Pick physical device
+	// Create vulkan surface
+	createSurface();
+	// Pick physical device
 	physicalDevice.pickPhysicalDevice(vulkanInstance.instance, surface, &settings);
-  // Create logical device
+	// Create logical device
 	logicalDevice.createLogicalDevice(physicalDevice.physicalDevice, surface, &settings);
+	// Create swap chain
+	swapChain.createSwapChain(physicalDevice.physicalDevice, logicalDevice.device, surface, &settings);
 }
 
 void Engine::mainLoop() {
@@ -38,13 +40,14 @@ void Engine::mainLoop() {
 }
 
 void Engine::cleanup() {
+	vkDestroySwapchainKHR(logicalDevice.device, swapChain.swapChain, nullptr);
 	vkDestroyDevice(logicalDevice.device, nullptr);
 
 	if (settings.enableValidationLayers) {
 		debugManager.destroyDebugUtilsMessengerEXT(vulkanInstance.instance, debugManager.debugMessenger, nullptr);
 	}
 
-  vkDestroySurfaceKHR(vulkanInstance.instance, surface, nullptr);
+	vkDestroySurfaceKHR(vulkanInstance.instance, surface, nullptr);
 	vkDestroyInstance(vulkanInstance.instance, nullptr);
 
 	glfwDestroyWindow(window);
@@ -53,6 +56,6 @@ void Engine::cleanup() {
 }
 
 void Engine::createSurface() {
-  if (glfwCreateWindowSurface(vulkanInstance.instance, window, nullptr, &surface) != VK_SUCCESS)
-    throw std::runtime_error("Failed to create window surface!");
+	if (glfwCreateWindowSurface(vulkanInstance.instance, window, nullptr, &surface) != VK_SUCCESS)
+		throw std::runtime_error("Failed to create window surface!");
 }

@@ -166,6 +166,7 @@
     <ClCompile Include="VulkanInstance.cpp" />
     <ClCompile Include="VulkanLogicalDevice.cpp" />
     <ClCompile Include="VulkanPhysicalDevice.cpp" />
+    <ClCompile Include="VulkanSwapChain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnsiEscapeCodes.hxx" />
@@ -177,6 +178,7 @@
     <ClInclude Include="VulkanInstance.hxx" />
     <ClInclude Include="VulkanLogicalDevice.hxx" />
     <ClInclude Include="VulkanPhysicalDevice.hxx" />
+    <ClInclude Include="VulkanSwapChain.hxx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
