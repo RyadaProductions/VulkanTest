@@ -7,7 +7,7 @@
 #include <vector>
 #include <iostream>
 
-#include "Settings.h"
+#include "Settings.hxx"
 
 class VulkanInstance {
 public:

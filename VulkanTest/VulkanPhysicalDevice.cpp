@@ -1,4 +1,4 @@
-#include "VulkanPhysicalDevice.h"
+#include "VulkanPhysicalDevice.hxx"
 
 void VulkanPhysicalDevice::pickPhysicalDevice(VkInstance instance) {
 	uint32_t deviceCount = 0;

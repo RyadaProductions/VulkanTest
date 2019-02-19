@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-#include "QueueFamilyIndices.h"
+#include "QueueFamilyIndices.hxx"
 
 class VulkanPhysicalDevice {
 public:

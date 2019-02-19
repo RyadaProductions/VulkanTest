@@ -6,8 +6,8 @@
 
 #include <iostream>
 
-#include "AnsiEscapeCodes.h"
-#include "Settings.h"
+#include "AnsiEscapeCodes.hxx"
+#include "Settings.hxx"
 
 class DebugManager {
 public:

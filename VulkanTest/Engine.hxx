@@ -5,11 +5,11 @@
 #include <GLFW/glfw3.h>
 
 // h files
-#include "VulkanInstance.h"
-#include "VulkanPhysicalDevice.h"
-#include "VulkanLogicalDevice.h"
-#include "Settings.h"
-#include "DebugManager.h"
+#include "VulkanInstance.hxx"
+#include "VulkanPhysicalDevice.hxx"
+#include "VulkanLogicalDevice.hxx"
+#include "Settings.hxx"
+#include "DebugManager.hxx"
 
 class Engine {
 public:

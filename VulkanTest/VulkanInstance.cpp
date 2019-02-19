@@ -1,4 +1,4 @@
-#include "VulkanInstance.h"
+#include "VulkanInstance.hxx"
 
 void VulkanInstance::initInstance(Settings* settings) {
 	if (isInitialized)

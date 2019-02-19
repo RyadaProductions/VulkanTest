@@ -1,4 +1,4 @@
-#include "DebugManager.h"
+#include "DebugManager.hxx"
 
 void DebugManager::setupDebugMessenger(Settings* pSettings, VkInstance instance) {
 	if (isInitialized)

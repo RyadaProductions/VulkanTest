@@ -1,4 +1,4 @@
-#include "VulkanLogicalDevice.h"
+#include "VulkanLogicalDevice.hxx"
 
 void VulkanLogicalDevice::createLogicalDevice(VkPhysicalDevice physicalDevice, Settings* settings) {
 	QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
