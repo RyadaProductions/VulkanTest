@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 
 #include "QueueFamilyIndices.hxx"
 #include "Settings.hxx"
@@ -14,6 +15,7 @@ class VulkanLogicalDevice {
 public:
 	VkDevice device;
 	VkQueue graphicsQueue;
+  VkQueue presentQueue;
 
 	void createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* settings);
 };
