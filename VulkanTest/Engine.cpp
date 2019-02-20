@@ -33,6 +33,8 @@ void Engine::initVulkan() {
 	swapChain.createSwapChain(physicalDevice.physicalDevice, logicalDevice.device, surface, &settings);
   // Create image views
   swapChain.createImageViews(logicalDevice.device);
+  // Create render pipeline
+  renderPipeline.createGraphicsPipeline();
 }
 
 void Engine::mainLoop() {
