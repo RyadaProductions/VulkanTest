@@ -31,6 +31,8 @@ void Engine::initVulkan() {
 	logicalDevice.createLogicalDevice(physicalDevice.physicalDevice, surface, &settings);
 	// Create swap chain
 	swapChain.createSwapChain(physicalDevice.physicalDevice, logicalDevice.device, surface, &settings);
+  // Create image views
+  swapChain.createImageViews(logicalDevice.device);
 }
 
 void Engine::mainLoop() {
@@ -40,6 +42,10 @@ void Engine::mainLoop() {
 }
 
 void Engine::cleanup() {
+  for (auto imageView : swapChain.swapChainImageViews) {
+    vkDestroyImageView(logicalDevice.device, imageView, nullptr);
+  }
+
 	vkDestroySwapchainKHR(logicalDevice.device, swapChain.swapChain, nullptr);
 	vkDestroyDevice(logicalDevice.device, nullptr);
 

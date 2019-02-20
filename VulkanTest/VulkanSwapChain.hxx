@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 #include "SwapChainSupportDetails.hxx"
 #include "QueueFamilyIndices.hxx"
@@ -22,8 +23,11 @@ public:
   VkExtent2D extent;
 
   std::vector<VkImage> swapChainImages;
+  std::vector<VkImageView> swapChainImageViews;
 
   void createSwapChain(VkPhysicalDevice physicalDevice, VkDevice device, VkSurfaceKHR surface, Settings* pSettings);
+
+  void createImageViews(VkDevice device);
 
 private:
   VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
