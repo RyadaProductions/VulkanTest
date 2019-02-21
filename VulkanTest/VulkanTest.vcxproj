@@ -222,6 +222,7 @@
     <ClCompile Include="VulkanInstance.cpp" />
     <ClCompile Include="VulkanLogicalDevice.cpp" />
     <ClCompile Include="VulkanPhysicalDevice.cpp" />
+    <ClCompile Include="VulkanRenderPass.cpp" />
     <ClCompile Include="VulkanRenderPipeline.cpp" />
     <ClCompile Include="VulkanSwapChain.cpp" />
   </ItemGroup>
@@ -235,10 +236,12 @@
     <ClInclude Include="VulkanInstance.hxx" />
     <ClInclude Include="VulkanLogicalDevice.hxx" />
     <ClInclude Include="VulkanPhysicalDevice.hxx" />
+    <ClInclude Include="VulkanRenderPass.hxx" />
     <ClInclude Include="VulkanRenderPipeline.hxx" />
     <ClInclude Include="VulkanSwapChain.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CompileShaders.bat" />
     <None Include="shaders\shader.frag" />
     <None Include="shaders\shader.vert" />
   </ItemGroup>

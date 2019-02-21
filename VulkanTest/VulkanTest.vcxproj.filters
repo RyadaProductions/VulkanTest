@@ -39,6 +39,9 @@
     <ClCompile Include="VulkanRenderPipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VulkanRenderPass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnsiEscapeCodes.hxx">
@@ -74,9 +77,15 @@
     <ClInclude Include="VulkanRenderPipeline.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VulkanRenderPass.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\shader.vert" />
     <None Include="shaders\shader.frag" />
+    <None Include="CompileShaders.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
