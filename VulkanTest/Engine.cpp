@@ -37,6 +37,8 @@ void Engine::initVulkan() {
   renderPass.createRenderPass(logicalDevice.device, swapChain.surfaceFormat.format);
   // Create render pipeline
   renderPipeline.createGraphicsPipeline(logicalDevice.device, renderPass, swapChain.extent);
+  // Create framebuffers
+  framebuffer.createFramebuffers(logicalDevice.device, swapChain.extent, renderPass.renderPass, swapChain.swapChainImageViews);
 }
 
 void Engine::mainLoop() {
@@ -46,6 +48,10 @@ void Engine::mainLoop() {
 }
 
 void Engine::cleanup() {
+  for (auto buffer : framebuffer.swapChainFramebuffers) {
+    vkDestroyFramebuffer(logicalDevice.device, buffer, nullptr);
+  }
+
   vkDestroyPipeline(logicalDevice.device, renderPipeline.graphicsPipeline, nullptr);
   vkDestroyPipelineLayout(logicalDevice.device, renderPipeline.pipelineLayout, nullptr);
   vkDestroyRenderPass(logicalDevice.device, renderPass.renderPass, nullptr);

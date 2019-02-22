@@ -11,6 +11,7 @@
 #include "VulkanSwapChain.hxx"
 #include "VulkanRenderPass.hxx"
 #include "VulkanRenderPipeline.hxx"
+#include "VulkanFrameBuffer.hxx"
 #include "Settings.hxx"
 #include "DebugManager.hxx"
 
@@ -29,6 +30,7 @@ private:
   VulkanSwapChain swapChain;
   VulkanRenderPass renderPass;
   VulkanRenderPipeline renderPipeline;
+  VulkanFramebuffer framebuffer;
 
 	Settings settings;
 	DebugManager debugManager;

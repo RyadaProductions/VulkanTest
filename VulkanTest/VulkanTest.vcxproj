@@ -219,6 +219,7 @@
     <ClCompile Include="DebugManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="VulkanFrameBuffer.cpp" />
     <ClCompile Include="VulkanInstance.cpp" />
     <ClCompile Include="VulkanLogicalDevice.cpp" />
     <ClCompile Include="VulkanPhysicalDevice.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="Engine.hxx" />
     <ClInclude Include="QueueFamilyIndices.hxx" />
     <ClInclude Include="SwapChainSupportDetails.hxx" />
+    <ClInclude Include="VulkanFrameBuffer.hxx" />
     <ClInclude Include="VulkanInstance.hxx" />
     <ClInclude Include="VulkanLogicalDevice.hxx" />
     <ClInclude Include="VulkanPhysicalDevice.hxx" />
