@@ -18,6 +18,8 @@
 
 class Engine {
 public:
+	bool framebufferResized = false;
+
 	void run();
 
 private:
@@ -57,4 +59,9 @@ private:
 	void recreateSwapChain();
 	void cleanupSwapChain();
 };
+
+static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
+	auto app = reinterpret_cast<Engine*>(glfwGetWindowUserPointer(window));
+	app->framebufferResized = true;
+}
 #endif // !HelloTriangleApplication_H
