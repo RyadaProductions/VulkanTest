@@ -14,27 +14,27 @@
 
 class VulkanSwapChain {
 public:
-  SwapChainSupportDetails swapChainSupport;
+	SwapChainSupportDetails swapChainSupport;
 
-  VkSwapchainKHR swapChain;
+	VkSwapchainKHR swapChain;
 
-  VkSurfaceFormatKHR surfaceFormat;
-  VkPresentModeKHR presentMode;
-  VkExtent2D extent;
+	VkSurfaceFormatKHR surfaceFormat;
+	VkPresentModeKHR presentMode;
+	VkExtent2D extent;
 
-  std::vector<VkImage> swapChainImages;
-  std::vector<VkImageView> swapChainImageViews;
+	std::vector<VkImage> swapChainImages;
+	std::vector<VkImageView> swapChainImageViews;
 
-  void createSwapChain(VkPhysicalDevice physicalDevice, VkDevice device, VkSurfaceKHR surface, Settings* pSettings);
+	void createSwapChain(VkPhysicalDevice physicalDevice, VkDevice device, VkSurfaceKHR surface, GLFWwindow* window, Settings* pSettings);
 
-  void createImageViews(VkDevice device);
+	void createImageViews(VkDevice device);
 
 private:
-  VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
+	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 
-  VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR> availablePresentModes);
+	VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR> availablePresentModes);
 
-  VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities, Settings* pSettings);
+	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities, GLFWwindow* window, Settings* pSettings);
 };
 
 #endif // !VulkanSwapChain_H

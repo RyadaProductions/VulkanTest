@@ -21,6 +21,6 @@ public:
 private:
 	bool isDeviceSuitable(VkPhysicalDevice device, VkSurfaceKHR surface, Settings* pSettings);
 
-  bool checkDeviceExtensionSupport(VkPhysicalDevice device, Settings* pSettings);
+	bool checkDeviceExtensionSupport(VkPhysicalDevice device, Settings* pSettings);
 };
 #endif // !VulkanPhysicalDevice_H

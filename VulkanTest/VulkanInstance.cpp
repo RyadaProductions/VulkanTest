@@ -38,7 +38,7 @@ void VulkanInstance::initInstance(Settings* pSettings) {
 	isInitialized = true;
 }
 
-void VulkanInstance::outputAvailableExtensions(std::vector<const char*>* pRequiredExtensions) {
+void VulkanInstance::outputAvailableExtensions(std::vector<const char*> * pRequiredExtensions) {
 	uint32_t availableExtensionCount = 0;
 	vkEnumerateInstanceExtensionProperties(nullptr, &availableExtensionCount, nullptr);
 	std::vector<VkExtensionProperties> availableExtensions(availableExtensionCount);
@@ -57,7 +57,7 @@ void VulkanInstance::outputAvailableExtensions(std::vector<const char*>* pRequir
 	}
 }
 
-bool VulkanInstance::checkValidationLayerSupport(Settings* pSettings) {
+bool VulkanInstance::checkValidationLayerSupport(Settings * pSettings) {
 	uint32_t layerCount;
 	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
@@ -85,7 +85,7 @@ bool VulkanInstance::checkValidationLayerSupport(Settings* pSettings) {
 	return true;
 }
 
-std::vector<const char*> VulkanInstance::getRequiredExtensions(Settings* pSettings) {
+std::vector<const char*> VulkanInstance::getRequiredExtensions(Settings * pSettings) {
 	uint32_t glfwExtensionCount = 0;
 	const char** glfwExtensions;
 	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);

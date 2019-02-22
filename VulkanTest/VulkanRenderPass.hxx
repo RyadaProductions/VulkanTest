@@ -8,9 +8,9 @@
 
 class VulkanRenderPass {
 public:
-  VkRenderPass renderPass;
+	VkRenderPass renderPass;
 
-  void createRenderPass(VkDevice device, VkFormat swapChainImageFormat);
+	void createRenderPass(VkDevice device, VkFormat swapChainImageFormat);
 
 private:
 

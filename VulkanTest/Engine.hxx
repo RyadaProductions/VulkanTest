@@ -25,33 +25,36 @@ private:
 
 	VulkanInstance vulkanInstance;
 	VkDebugUtilsMessengerEXT debugMessenger;
-  VkSurfaceKHR surface;
+	VkSurfaceKHR surface;
 
-  std::vector<VkSemaphore> imageAvailableSemaphores;
-  std::vector<VkSemaphore> renderFinishedSemaphores;
-  std::vector<VkFence> inFlightFences;
+	std::vector<VkSemaphore> imageAvailableSemaphores;
+	std::vector<VkSemaphore> renderFinishedSemaphores;
+	std::vector<VkFence> inFlightFences;
 
 	VulkanPhysicalDevice physicalDevice;
 	VulkanLogicalDevice logicalDevice;
-  VulkanSwapChain swapChain;
-  VulkanRenderPass renderPass;
-  VulkanRenderPipeline renderPipeline;
-  VulkanFramebuffer framebuffer;
-  VulkanCommandBuffer commandBuffer;
+	VulkanSwapChain swapChain;
+	VulkanRenderPass renderPass;
+	VulkanRenderPipeline renderPipeline;
+	VulkanFramebuffer framebuffer;
+	VulkanCommandBuffer commandBuffer;
 
 	Settings settings;
 	DebugManager debugManager;
 
-  size_t currentFrame = 0;
+	size_t currentFrame = 0;
 
 	void initWindow();
 	void initVulkan();
 	void mainLoop();
 	void cleanup();
 
-  void createSurface();
-  void createSyncObjects();
+	void createSurface();
+	void createSyncObjects();
 
-  void drawFrame();
+	void drawFrame();
+
+	void recreateSwapChain();
+	void cleanupSwapChain();
 };
 #endif // !HelloTriangleApplication_H

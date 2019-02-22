@@ -38,7 +38,7 @@ namespace AnsiEscapeCodes {
 	static constexpr char FOREGROUND_COLOR_STRONG_MAGENTA[] = "\u001b[95m";
 	static constexpr char FOREGROUND_COLOR_STRONG_CYAN[] = "\u001b[96m";
 	static constexpr char FOREGROUND_COLOR_STRONG_WHITE[] = "\u001b[97m";
-	
+
 	// Strong background
 	static constexpr char BACKGROUND_COLOR_STRONG_BLACK[] = "\u001b[100m";
 	static constexpr char BACKGROUND_COLOR_STRONG_RED[] = "\u001b[101m";

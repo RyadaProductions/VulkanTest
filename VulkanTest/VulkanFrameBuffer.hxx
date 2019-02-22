@@ -9,9 +9,9 @@
 
 class VulkanFramebuffer {
 public:
-  std::vector<VkFramebuffer> swapChainFramebuffers;
+	std::vector<VkFramebuffer> swapChainFramebuffers;
 
-  void createFramebuffers(VkDevice device, VkExtent2D extent, VkRenderPass renderPass, std::vector<VkImageView> swapChainImageViews);
+	void createFramebuffers(VkDevice device, VkExtent2D extent, VkRenderPass renderPass, std::vector<VkImageView> swapChainImageViews);
 
 private:
 };

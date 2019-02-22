@@ -16,7 +16,7 @@ public:
 	VkDevice device;
 
 	VkQueue graphicsQueue;
-  VkQueue presentQueue;
+	VkQueue presentQueue;
 
 	void createLogicalDevice(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, Settings* pSettings);
 };

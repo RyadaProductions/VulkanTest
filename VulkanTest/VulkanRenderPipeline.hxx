@@ -11,16 +11,16 @@
 
 class VulkanRenderPipeline {
 public:
-  VkPipelineLayout pipelineLayout;
+	VkPipelineLayout pipelineLayout;
 
-  VkPipeline graphicsPipeline;
+	VkPipeline graphicsPipeline;
 
-  void createGraphicsPipeline(VkDevice device, VulkanRenderPass renderPass, VkExtent2D swapChainExtent);
+	void createGraphicsPipeline(VkDevice device, VkRenderPass renderPass, VkExtent2D swapChainExtent);
 
 private:
-  std::vector<char> readFile(const std::string& fileName);
+	std::vector<char> readFile(const std::string& fileName);
 
-  VkShaderModule createShaderModule(VkDevice device, const std::vector<char>& code);
+	VkShaderModule createShaderModule(VkDevice device, const std::vector<char>& code);
 };
 
 #endif // !VulkanRenderPipeline_H
