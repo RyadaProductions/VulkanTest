@@ -12,6 +12,7 @@
 #include "VulkanRenderPass.hxx"
 #include "VulkanRenderPipeline.hxx"
 #include "VulkanFrameBuffer.hxx"
+#include "VulkanCommandBuffer.hxx"
 #include "Settings.hxx"
 #include "DebugManager.hxx"
 
@@ -32,6 +33,7 @@ private:
   VulkanRenderPass renderPass;
   VulkanRenderPipeline renderPipeline;
   VulkanFramebuffer framebuffer;
+  VulkanCommandBuffer commandBuffer;
 
 	Settings settings;
 	DebugManager debugManager;
