@@ -24,6 +24,7 @@ private:
 
 	VulkanInstance vulkanInstance;
 	VkDebugUtilsMessengerEXT debugMessenger;
+  VkSurfaceKHR surface;
 
 	VulkanPhysicalDevice physicalDevice;
 	VulkanLogicalDevice logicalDevice;
@@ -34,8 +35,6 @@ private:
 
 	Settings settings;
 	DebugManager debugManager;
-
-  VkSurfaceKHR surface;
 
 	void initWindow();
 	void initVulkan();

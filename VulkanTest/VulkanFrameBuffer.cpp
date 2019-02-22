@@ -17,7 +17,7 @@ void VulkanFramebuffer::createFramebuffers(VkDevice device, VkExtent2D extent, V
     frameBufferInfo.height = extent.height;
     frameBufferInfo.layers = 1;
 
-    if (vkCreateFramebuffer(device, &frameBufferInfo, nullptr, swapChainFramebuffers.data()) != VK_SUCCESS) {
+    if (vkCreateFramebuffer(device, &frameBufferInfo, nullptr, &swapChainFramebuffers[i]) != VK_SUCCESS) {
       throw std::runtime_error("Could not create framebuffers!");
     }
   }
