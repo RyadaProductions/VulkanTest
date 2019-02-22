@@ -27,6 +27,10 @@ private:
 	VkDebugUtilsMessengerEXT debugMessenger;
   VkSurfaceKHR surface;
 
+  std::vector<VkSemaphore> imageAvailableSemaphores;
+  std::vector<VkSemaphore> renderFinishedSemaphores;
+  std::vector<VkFence> inFlightFences;
+
 	VulkanPhysicalDevice physicalDevice;
 	VulkanLogicalDevice logicalDevice;
   VulkanSwapChain swapChain;
@@ -38,11 +42,16 @@ private:
 	Settings settings;
 	DebugManager debugManager;
 
+  size_t currentFrame = 0;
+
 	void initWindow();
 	void initVulkan();
 	void mainLoop();
 	void cleanup();
 
   void createSurface();
+  void createSyncObjects();
+
+  void drawFrame();
 };
 #endif // !HelloTriangleApplication_H
